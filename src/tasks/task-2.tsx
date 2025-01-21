@@ -1,8 +1,15 @@
-type MyComponentProps = {
-  items: any[]
-  defaultItem: any
+type MyComponentProps<T> = {
+  items: T[]
+  defaultItem: T
 }
-function MyComponent(props: MyComponentProps) {
+
+// function MyComponent<T>(props: MyComponentProps<T>) {
+//   console.log(props)
+//   return <p>some content</p>
+// }
+
+// Если использовать стрелочную функцию
+const MyComponent = <T, >(props: MyComponentProps<T>) => {
   console.log(props)
   return <p>some content</p>
 }
@@ -15,8 +22,10 @@ const App = () => {
 
   return (
     <>
-      <MyComponent items={['react', 'typescript']} defaultItem={9} />
-      <MyComponent items={users} defaultItem={'JUST STRING'} />
+      {/* <MyComponent items={['react', 'typescript']} defaultItem={9} /> */}
+      <MyComponent items={['react', 'typescript']} defaultItem={'9'} />
+      {/* <MyComponent items={users} defaultItem={'JUST STRING'} /> */}
+      <MyComponent items={users} defaultItem={{name: 'WWW', age: 0}} />
     </>
   )
 }
